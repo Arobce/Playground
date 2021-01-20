@@ -15,6 +15,7 @@ function Circle(x, y, radius, dx, dy) {
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     c.strokeStyle = "red";
     c.stroke();
+    c.fill();
   };
 
   this.bounce = function () {
