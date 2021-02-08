@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
-import 'package:file_utils/file_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:math';
 
@@ -42,6 +41,7 @@ class _FileDownloaderState extends State<FileDownloader> {
 
   Future<void> downloadFile() async {
     Dio dio = Dio();
+    var token = "<token>";
     var checkPermission1 = await Permission.storage.status;
     print(checkPermission1);
     if (checkPermission1.isUndetermined) {
@@ -59,8 +59,7 @@ class _FileDownloaderState extends State<FileDownloader> {
         await dio.download(dropBoxUrl, dirloc + randid.toString() + ".png",
             options: Options(headers: {
               'Content-Type': 'application/octet-stream; charset=utf-8',
-              'Authorization':
-                  'Bearer sl.Aq0nZr2SEb0px1CqZmDMvV5psPBi4S6gZyw9QcQDEwJ8pF8LvbA6-chCMY-dycOiNgUyCkDXkY3WTL5R3pOKx3aJNIINcm2aa0fvdhzImII2812-6vz4mbLzkQ0pLmzAHQRkARTvj9U',
+              'Authorization': 'Bearer $token',
               'Dropbox-API-Arg': '{ "path": "$fileName" }'
             }), onReceiveProgress: (receivedBytes, totalBytes) {
           setState(() {
