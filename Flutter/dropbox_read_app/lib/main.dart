@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:file_utils/file_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
@@ -43,7 +44,6 @@ class _FileDownloaderState extends State<FileDownloader> {
     Dio dio = Dio();
     var token = "<token>";
     var checkPermission1 = await Permission.storage.status;
-    print(checkPermission1);
     if (checkPermission1.isUndetermined) {
       checkPermission1 = await Permission.storage.request();
     }
@@ -56,7 +56,7 @@ class _FileDownloaderState extends State<FileDownloader> {
       var randid = random.nextInt(10000);
 
       try {
-        await dio.download(dropBoxUrl, dirloc + randid.toString() + ".png",
+        await dio.download(dropBoxUrl, dirloc +  "/"+randid.toString() + ".png",
             options: Options(headers: {
               'Content-Type': 'application/octet-stream; charset=utf-8',
               'Authorization': 'Bearer $token',
@@ -82,7 +82,7 @@ class _FileDownloaderState extends State<FileDownloader> {
       setState(() {
         downloading = false;
         progress = "Download Completed.";
-        path = dirloc + randid.toString() + ".jpg";
+        path = dirloc +  "/"+randid.toString() + ".png";
       });
     } else {
       setState(() {
