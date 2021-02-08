@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dropbox_download_db_run_app/utils/database_access.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/src/widgets/basic.dart';
@@ -118,6 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text("Get database"),
                 onPressed: () {
                   downloadFile();
+                  DatabaseAccess databaseAccess = new DatabaseAccess();
+                  databaseAccess.getData();
                 },
               ),
               Text(path),
