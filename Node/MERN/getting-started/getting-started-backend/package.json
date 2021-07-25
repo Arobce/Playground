@@ -11,5 +11,13 @@
   "devDependencies": {
     "eslint": "^7.31.0",
     "jest": "^27.0.6"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "test": "jest -i --verbose --coverage --runInBand",
+    "start": "node index.js",
+    "dboff": "killall mongod",
+    "watch": "nodemon index.js",
+    "dbon": "mkdir -p ./db && mongod --dbpath ./db"
   }
 }
